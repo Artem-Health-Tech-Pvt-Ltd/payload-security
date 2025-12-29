@@ -1,4 +1,4 @@
-const API_BASE = 'http://localhost:3000';
+const API_BASE = 'http://192.168.1.8:3000';
 let selectedEnvironment = 'DEV';
 
 /**
