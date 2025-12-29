@@ -1,5 +1,5 @@
-# Use Node.js 18 Alpine for smaller image size
-FROM node:18-alpine
+# Use Node.js 20 Alpine (LTS version that supports RSA_PKCS1_PADDING with security revert flag)
+FROM node:20-alpine
 
 # Set working directory
 WORKDIR /app
@@ -21,6 +21,8 @@ EXPOSE 3000
 # Set environment variables
 ENV NODE_ENV=production
 ENV PORT=3000
+# Revert CVE-2023-46809 to allow RSA_PKCS1_PADDING for private decryption
+ENV NODE_OPTIONS=--security-revert=CVE-2023-46809
 
 # Run as non-root user for security
 RUN addgroup -g 1001 -S nodejs && \
