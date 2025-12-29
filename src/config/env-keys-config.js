@@ -1,0 +1,64 @@
+/**
+ * Environment Configuration for Encryption Tool
+ * Contains RSA key pairs for different environments (DEV, QA, UAT, PRUN, LIVE)
+ */
+
+const environmentConfig = {
+  DEV: {
+    privateKey: `-----BEGIN PRIVATE KEY-----
+MIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCBSnKRy/nHE8Fk
+jAWGg70N3PF+/NHRcACM0Rmwj/iIqJ1QL+nuMRttuunaP9DHU7nGXJUX/jvHM6z9
+qOwN+sJXp1MN34HZZ5nP/lXKU/+pBihXyFyhLZn6yiNWOZn/mOuuM59PYTzKhqp4
+Rlot3jVizboOhNaiZpvfaaDbTpEuEzDc7tsubChDedHuaGPB6PJwboxhz1QBqCjs
+PolGnqvlvqYZzhS3qdYHPnqQBPtO/qZAvzmoh1LesLrfHDa79E+6dRaFP5ut2n9T
+jtWQSZO1Q8g39p+0aa677skXL5GOPvdeaVhbilj8kToguZDBrOu4G7N6NgptdDw9
+GptM21glAgMBAAECggEACcwV6sq9po0ZL7YqlFsMQEODVfTw2Kw3kR7RPF9p3RUw
+jTXW8LKY76jlH/bg/7xuTJk8amEyBMd7hDdA4qhOAhgPA53xuC3mamv38p6Ii4re
+E2opQW90BnHl2UVWeuy1bfHB0IvqRYs3L2kJXAYayTNqC2qb3G+RFTjAXzimE2B2
+VgZi4rSY7W2U/kNeyaF8ibheLsDvGuwgAiiILGlkcPMUFKWutZRm13WVpcXmF6fv
+bR3X8blX9silLWRehlKXiIBC/eR6MKy31ZnnwnxZosRTT4eEvZz0Vy+I4micPT6H
+Fsr4bYgvkIe0sJMPc6/rgP5qFYwqPam0zp8OEMzIKwKBgQC2fYm/GBTloSddMts6
+1E7uX0VfMPDSS9NPvE7Fg3lb3ObE1zpHboKkOMlKOsRluuOIgNVlcOCFX4R7uF3y
+IPMda2Bkz9p7+Sr7eBKzEg8SkmUSBFcvPdhT3zCHl75Amp0S1uruHxPRCGQ7Ykty
+MEWdy1rS+Kde3foUDlT/2ToVGwKBgQC1XvQ0it4qT3CQhoGRPuWsGM/mJEs4yOJQ
+leGAwHHTxpOGTsfmPTJXfLseK13RxH3cwKWeQDprlPJTM7AsdlAmpT8lHlDM/xne
+Tx9Po2XtlI3leIbPkpDgTmxgI07ZJH7ZHKN+M9/Qhf5QnV2qVqLKXAjKye+pXH+F
+A4nEQF9bvwKBgBEJKyDBuMGvB6O1qa2WQEAUeL9oLDMVjQZ2h8v8eAnRV2Gsze35
+LQzzmCbr0YXFqpQFouYzYWJSBmYeUfbWiJuIeJkwpi7IlfCfxu8cknejXvgNm633
+UgiSX09pJQOW627kzU2pbQoohGLezDg+tWEDqNjlCYrbogrZQ6oWt0tdAoGAX02O
+2tEhnm/xwS+8g5reSokbLV5i3GrKaPfo76Ov7E0LFebtqXD8s/YJyPeWq/QpAseD
+/1zWldNFZizh5OsigLwSKyn74Uwmxqci19EPbUDDMxIbHJVyZTswPXAwLW+8687d
+piIR+FuAX9Hg9vHhRp4HzK9BrOe65iUOzj3ZHbcCgYBNwgRIq70geFUtH3FO5Bnp
+O37AFjz73WfU9tObjVVcHmebXp8Kvi36b7/AYiLYoo3bIS00Sj+4tT0njpCguc/J
+r4Lj5jzL3V01IRXLy081FAM/VgXsT0SeLA8HNkhguO9HX1IshatrO0Pi0snxEmCS
+JsPCCGY6e0PRXrNEJ8OcGg==
+-----END PRIVATE KEY-----`,
+    publicKey: `-----BEGIN PUBLIC KEY-----
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAgUpykcv5xxPBZIwFhoO9
+DdzxfvzR0XAAjNEZsI/4iKidUC/p7jEbbbrp2j/Qx1O5xlyVF/47xzOs/ajsDfrC
+V6dTDd+B2WeZz/5VylP/qQYoV8hcoS2Z+sojVjmZ/5jrrjOfT2E8yoaqeEZaLd41
+Ys26DoTWomab32mg206RLhMw3O7bLmwoQ3nR7mhjwejycG6MYc9UAago7D6JRp6r
+5b6mGc4Ut6nWBz56kAT7Tv6mQL85qIdS3rC63xw2u/RPunUWhT+brdp/U47VkEmT
+tUPIN/aftGmuu+7JFy+Rjj73XmlYW4pY/JE6ILmQwazruBuzejYKbXQ8PRqbTNtY
+JQIDAQAB
+-----END PUBLIC KEY-----`
+  },
+  QA: {
+    privateKey: '',
+    publicKey: ''
+  },
+  UAT: {
+    privateKey: '',
+    publicKey: ''
+  },
+  PRUN: {
+    privateKey: '',
+    publicKey: ''
+  },
+  LIVE: {
+    privateKey: '',
+    publicKey: ''
+  }
+};
+
+export default environmentConfig;

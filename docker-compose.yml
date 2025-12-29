@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  payload-crypto-tool:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: payload-crypto-tool
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+    volumes:
+      # Mount external config for easy key updates without rebuilding
+      - ./src/config/env-keys-config.js:/app/src/config/env-keys-config.js:ro
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:3000/health"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+      start_period: 10s

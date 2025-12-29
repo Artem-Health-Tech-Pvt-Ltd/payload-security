@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payload Encryption/Decryption Tool</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🔐 Payload Crypto Tool</h1>
+            <p>Encrypt and Decrypt JSON Payloads using Hybrid AES+RSA</p>
+        </header>
+
+        <!-- Environment Selector -->
+        <div class="environment-selector">
+            <label for="environmentSelect">🌍 Select Environment:</label>
+            <select id="environmentSelect" onchange="handleEnvironmentChange()">
+                <option value="">Loading environments...</option>
+            </select>
+            <span id="envStatus" class="env-status"></span>
+        </div>
+
+        <div class="cards-container">
+            <!-- Encrypt Card -->
+            <div class="card">
+                <div class="card-header">
+                    <h2>🔒 Encrypt Payload</h2>
+                </div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="encryptInput">Plain JSON:</label>
+                        <textarea 
+                            id="encryptInput" 
+                            placeholder='Enter JSON or plain text. Example: {"name": "John", "age": 30}'
+                            rows="8"
+                        ></textarea>
+                    </div>
+                    <button class="btn btn-primary" onclick="encrypt()">🔒 Encrypt</button>
+                    
+                    <div id="encryptResult" class="result hidden">
+                        <h3>Encrypted Payload</h3>
+                        <div class="result-item">
+                            <label>Data (Encrypted):</label>
+                            <textarea id="encryptResultData" readonly rows="4"></textarea>
+                            <button class="btn-copy" onclick="copyToClipboard('encryptResultData')">📋 Copy</button>
+                        </div>
+                        <div class="result-item">
+                            <label>IV (Initialization Vector):</label>
+                            <textarea id="encryptResultIv" readonly rows="2"></textarea>
+                            <button class="btn-copy" onclick="copyToClipboard('encryptResultIv')">📋 Copy</button>
+                        </div>
+                        <div class="result-item">
+                            <label>Key (Encrypted AES Key):</label>
+                            <textarea id="encryptResultKey" readonly rows="4"></textarea>
+                            <button class="btn-copy" onclick="copyToClipboard('encryptResultKey')">📋 Copy</button>
+                        </div>
+                        <div class="result-item">
+                            <label>Full Payload (for Postman):</label>
+                            <textarea id="encryptResultFull" readonly rows="6"></textarea>
+                            <button class="btn-copy" onclick="copyToClipboard('encryptResultFull')">📋 Copy</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Decrypt Card -->
+            <div class="card">
+                <div class="card-header">
+                    <h2>🔓 Decrypt Payload</h2>
+                </div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="decryptInput">Encrypted Payload (JSON):</label>
+                        <textarea 
+                            id="decryptInput" 
+                            placeholder='Paste encrypted payload in JSON format: {"data": "...", "iv": "...", "key": "..."}'
+                            rows="8"
+                        ></textarea>
+                    </div>
+                    <button class="btn btn-success" onclick="decrypt()">🔓 Decrypt</button>
+                    
+                    <div id="decryptResult" class="result hidden">
+                        <h3>Decrypted Payload</h3>
+                        <div class="result-item">
+                            <label>Decrypted Data:</label>
+                            <textarea id="decryptResultData" readonly rows="8"></textarea>
+                            <button class="btn-copy" onclick="copyToClipboard('decryptResultData')">📋 Copy</button>
+                        </div>
+                        <button class="btn btn-secondary" onclick="formatJsonDecrypt()">✨ Format JSON</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Info Section -->
+        <div class="info-section">
+            <h3>📖 How to Use</h3>
+            <div class="info-content">
+                <h4>For Postman Scripts:</h4>
+                <pre><code>// In Postman Pre-request Script:
+const payload = {
+  patientChiefComplaintDtos: [...]
+};
+
+fetch('http://localhost:3000/api/postman-encrypt', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({ payload })
+})
+.then(r => r.json())
+.then(data => {
+  pm.environment.set('encryptedPayload', JSON.stringify(data.postmanPayload));
+});</code></pre>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Load environments when page loads
+        document.addEventListener('DOMContentLoaded', loadEnvironments);
+    </script>
+</body>
+</html>

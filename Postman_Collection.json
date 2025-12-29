@@ -1,0 +1,106 @@
+{
+  "info": {
+    "_postman_id": "payload-crypto-tool-collection",
+    "name": "Payload Crypto Tool",
+    "description": "Encryption/Decryption API for testing BMC payloads",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Health Check",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/health"
+      }
+    },
+    {
+      "name": "Encrypt Payload",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{baseUrl}}/api/encrypt",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"payload\": {\n    \"patientChiefComplaintDtos\": [\n      {\n        \"id\": null,\n        \"days\": \"\",\n        \"complaintIDF\": 2371,\n        \"complaintName\": \"Fever\",\n        \"onSetDate\": \"2025-12-22\",\n        \"remarks\": \"High fever\",\n        \"since\": \"\",\n        \"daysDate\": \"3\",\n        \"sinseTenue\": \"\",\n        \"sinceName\": null,\n        \"encounterIDF\": 2279998\n      }\n    ]\n  }\n}"
+        }
+      }
+    },
+    {
+      "name": "Decrypt Payload",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{baseUrl}}/api/decrypt",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"encrypted\": {\n    \"data\": \"paste_encrypted_data_here\",\n    \"iv\": \"paste_iv_here\",\n    \"key\": \"paste_key_here\"\n  }\n}"
+        }
+      }
+    },
+    {
+      "name": "Postman Encrypt (Pre-request Script)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{baseUrl}}/api/postman-encrypt",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"payload\": {\n    \"patientChiefComplaintDtos\": [\n      {\n        \"id\": null,\n        \"complaintName\": \"Fever\",\n        \"onSetDate\": \"2025-12-22\"\n      }\n    ]\n  }\n}"
+        }
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3000"
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          "// Pre-request script to auto-encrypt payload",
+          "const plainPayload = {",
+          "  patientChiefComplaintDtos: [",
+          "    {",
+          "      id: null,",
+          "      complaintName: 'Fever',",
+          "      onSetDate: '2025-12-22'",
+          "    }",
+          "  ]",
+          "};",
+          "",
+          "fetch('http://localhost:3000/api/postman-encrypt', {",
+          "  method: 'POST',",
+          "  headers: { 'Content-Type': 'application/json' },",
+          "  body: JSON.stringify({ payload: plainPayload })",
+          "})",
+          ".then(response => response.json())",
+          ".then(data => {",
+          "  pm.environment.set('encryptedPayload', JSON.stringify(data.postmanPayload));",
+          "  console.log('Payload encrypted successfully');",
+          "})",
+          ".catch(error => console.error('Encryption failed:', error));"
+        ]
+      }
+    }
+  ]
+}

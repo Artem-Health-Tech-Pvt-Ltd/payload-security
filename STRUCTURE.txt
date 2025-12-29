@@ -1,0 +1,183 @@
+payload-crypto-tool/
+│
+├── 📖 Documentation
+│   ├── README.md                          # Complete API documentation
+│   ├── QUICKSTART.md                      # Get started in 2 minutes
+│   ├── PROJECT_OVERVIEW.md                # Architecture & features
+│   └── SETUP_COMPLETE.md                  # Setup verification
+│
+├── 🔧 Backend (Node.js/Express)
+│   ├── server.js                          # Main Express server
+│   ├── package.json                       # Dependencies
+│   │
+│   └── src/
+│       └── utils/
+│           └── RsaCryptoUtil.js           # AES+RSA encryption engine
+│
+├── 🎨 Frontend (HTML/CSS/JS)
+│   └── public/
+│       ├── index.html                     # Web interface
+│       ├── style.css                      # Responsive styling
+│       └── script.js                      # Client-side logic
+│
+├── 🔐 Security
+│   └── keys/
+│       ├── private_key.pem                # RSA private key
+│       └── public_key.pem                 # RSA public key
+│
+├── 🛠️ Configuration
+│   ├── .gitignore                         # Git configuration
+│   └── Postman_Collection.json            # Postman API tests
+
+═══════════════════════════════════════════════════════════════
+
+📊 FEATURES:
+
+Encryption:
+  ✅ Hybrid AES-256 + RSA
+  ✅ Random IV generation
+  ✅ Secure key wrapping
+
+API Endpoints:
+  ✅ POST /api/encrypt          - Encrypt payload
+  ✅ POST /api/decrypt          - Decrypt payload
+  ✅ POST /api/postman-encrypt  - Postman integration
+  ✅ GET /health                - Health check
+
+Web Interface:
+  ✅ Encrypt card               - Interactive encryption
+  ✅ Decrypt card               - Interactive decryption
+  ✅ Copy buttons               - Quick clipboard copy
+  ✅ Format JSON                - Pretty-print results
+  ✅ Responsive design          - Mobile-friendly
+
+Tools:
+  ✅ Postman collection         - Pre-configured tests
+  ✅ cURL examples              - Command-line usage
+  ✅ JavaScript integration     - Automation ready
+
+═══════════════════════════════════════════════════════════════
+
+🚀 QUICK COMMANDS:
+
+Installation:
+  cd c:\Users\Artem\Desktop\BMC\payload-crypto-tool
+  npm install
+
+Start Server:
+  npm start                     # Runs on http://localhost:3000
+
+Development:
+  npm run dev                   # With auto-reload (requires nodemon)
+
+═══════════════════════════════════════════════════════════════
+
+📚 DOCUMENTATION GUIDE:
+
+New to the tool?
+  → Read: QUICKSTART.md (2 minutes)
+
+Need API details?
+  → Read: README.md
+
+Want to understand architecture?
+  → Read: PROJECT_OVERVIEW.md
+
+Verification & setup?
+  → Read: SETUP_COMPLETE.md
+
+═══════════════════════════════════════════════════════════════
+
+🔑 SAME ENCRYPTION AS:
+
+  ✅ bmc-user-api
+  ✅ bmc-front-desk-api
+  ✅ bmc-medico-models (shared library)
+
+═══════════════════════════════════════════════════════════════
+
+💡 USE CASES:
+
+1. Test BMC Services
+   - Encrypt payloads before sending
+   - Decrypt response payloads
+
+2. Postman Automation
+   - Pre-request script encryption
+   - Dynamic payload generation
+
+3. Development & Debugging
+   - Understand encryption format
+   - Verify encryption logic
+   - Debug issues independently
+
+4. Integration Testing
+   - Prepare test data
+   - Validate encrypted payloads
+   - Test various scenarios
+
+═══════════════════════════════════════════════════════════════
+
+✨ EXAMPLE WORKFLOW:
+
+1. Enter JSON in web interface:
+   {
+     "patientName": "John Doe",
+     "appointmentDate": "2025-12-24"
+   }
+
+2. Click "🔒 Encrypt"
+
+3. Get encrypted payload:
+   {
+     "data": "a7f2e8b3d4c5...",
+     "iv": "f1e2d3c4b5a6...",
+     "key": "9a8b7c6d5e4f..."
+   }
+
+4. Copy and send to BMC service
+
+5. Or paste encrypted payload in decrypt card
+   to get back original JSON
+
+═══════════════════════════════════════════════════════════════
+
+🎯 ENDPOINTS SUMMARY:
+
+POST /api/encrypt
+  Request:  { "payload": {...} }
+  Response: { "encrypted": { "data": "...", "iv": "...", "key": "..." } }
+
+POST /api/decrypt
+  Request:  { "encrypted": { "data": "...", "iv": "...", "key": "..." } }
+  Response: { "decrypted": {...} }
+
+POST /api/postman-encrypt
+  Request:  { "payload": {...} }
+  Response: { "postmanPayload": {...} }
+
+GET /health
+  Response: { "status": "running" }
+
+═══════════════════════════════════════════════════════════════
+
+📦 PROJECT SIZE:
+
+Source Files:     ~5 files
+Documentation:    ~4 files
+Config Files:     ~2 files
+Total Files:      ~13 files
+Install Size:     ~200 MB (node_modules)
+Project Size:     ~1 MB (excluding node_modules)
+
+═══════════════════════════════════════════════════════════════
+
+✅ READY TO USE!
+
+All files are prepared and documented.
+Start with: npm install && npm start
+Open: http://localhost:3000
+
+Happy encrypting! 🔐
+
+═══════════════════════════════════════════════════════════════

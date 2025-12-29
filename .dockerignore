@@ -1,0 +1,36 @@
+# Dependencies
+node_modules
+npm-debug.log
+
+# Git
+.git
+.gitignore
+
+# Documentation
+*.md
+!README.md
+
+# IDE
+.vscode
+.idea
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+logs
+*.log
+
+# Test files
+*.test.js
+__tests__
+
+# Postman files
+Postman_Collection.json
+postman-collection-with-encryption.json
+
+# Misc
+STRUCTURE.txt
+.env.local
+.env.development
