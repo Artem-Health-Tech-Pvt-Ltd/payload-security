@@ -1,8 +1,11 @@
-# Use Node.js 18 Alpine for smaller image size
-FROM node:18-alpine
+# Use Node.js 20 Alpine (LTS version that supports RSA_PKCS1_PADDING with security revert flag)
+FROM node:20-alpine
 
 # Set working directory
 WORKDIR /app
+
+# Install wget for healthcheck
+RUN apk add --no-cache wget
 
 # Copy package files first (for better caching)
 COPY package*.json ./
@@ -31,5 +34,5 @@ USER nodejs
 HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
     CMD wget --no-verbose --tries=1 --spider http://localhost:3000/health || exit 1
 
-# Start the application
-CMD ["node", "server.js"]
+# Start the application with security revert flag passed directly to node
+CMD ["node", "--security-revert=CVE-2023-46809", "server.js"]
